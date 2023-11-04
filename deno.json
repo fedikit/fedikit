@@ -1,0 +1,9 @@
+{
+  "lock": false,
+  "importMap": "import_map.json",
+  "fmt": {
+    "exclude": ["npm"],
+    "singleQuote": true,
+    "semiColons": false
+  }
+}
