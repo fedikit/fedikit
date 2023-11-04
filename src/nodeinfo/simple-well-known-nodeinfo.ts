@@ -1,4 +1,4 @@
-import { WellKnownNodeInfo } from './lib/types.ts'
+import type { WellKnownNodeInfo } from './lib/types.ts'
 
 export const simpleWellKnownNodeInfo = (url: URL): Response =>
   new Response(

@@ -1,5 +1,5 @@
 import { extractSubject } from './lib/subject.ts'
-import { Webfinger } from './lib/types.ts'
+import type { Webfinger } from './lib/types.ts'
 
 export type SimpleWebfingerHandlerFn = (params: {
   /** @example `acct:carol@example.com` */
