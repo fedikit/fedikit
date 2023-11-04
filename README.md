@@ -3,9 +3,9 @@
 [![deno.land/x/fedikit](https://shield.deno.dev/x/fedikit)](https://deno.land/x/fedikit)
 ![deno compatibility](https://shield.deno.dev/deno/^1.38)
 
-Building blocks for Fediverse.
+Building Blocks for Fediverse.
 
-It works with Deno / Node.js (and maybe Bun).
+<!-- It works with Deno / Node.js (and maybe Bun). -->
 
 ## Blocks
 
