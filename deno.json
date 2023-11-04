@@ -2,7 +2,7 @@
   "lock": false,
   "importMap": "import_map.json",
   "fmt": {
-    "exclude": ["npm"],
+    "exclude": ["npm", "LICENSE.md"],
     "singleQuote": true,
     "semiColons": false
   }
