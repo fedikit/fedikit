@@ -24,8 +24,6 @@ export const verify = async (
   const signatureHeader = req.headers.get('Signature')
   if (!signatureHeader) throw new Error('Signature header is required')
 
-  console.log(signatureHeader)
-
   // check signature
   const { keyId, headers, signature, created, expires } =
     signatureHeaderToObject(signatureHeader)
