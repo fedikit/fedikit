@@ -50,7 +50,14 @@ const generateBuildOptions = (
   },
 })
 
-await Deno.remove('./npm', { recursive: true })
+try {
+  await Deno.remove('./npm', { recursive: true })
+} catch (err) {
+  if (!(err instanceof Deno.errors.NotFound)) {
+    throw err
+  }
+}
+
 await emptyDir('./npm')
 
 const encoder = new TextEncoder()
