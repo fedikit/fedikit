@@ -1,4 +1,54 @@
-import { build, emptyDir } from 'https://deno.land/x/dnt@0.38.1/mod.ts'
+import {
+  build,
+  type BuildOptions,
+  emptyDir,
+} from 'https://deno.land/x/dnt@0.38.1/mod.ts'
+
+const generateBuildOptions = (
+  { name, version }: { name: string; version: string },
+): BuildOptions => ({
+  importMap: 'import_map.json',
+  entryPoints: [`./src/${name}/mod.ts`],
+  outDir: `./npm/${name}`,
+  shims: { deno: true },
+  declaration: 'separate',
+  esModule: true,
+  scriptModule: false,
+  skipSourceOutput: true,
+  compilerOptions: {
+    lib: ['ESNext', 'DOM', 'DOM.Iterable'],
+  },
+  // if version === 'test', test only
+  test: version === 'test',
+  package: {
+    name: `@fedikit/${name}`,
+    version: version === 'test' ? '0.0.0-test.0' : version,
+    // if version === 'test', set private
+    private: version === 'test',
+    engines: { node: '>=20.0.0' },
+    description: 'Building Blocks for Fediverse.',
+    license: 'MIT',
+    repository: {
+      type: 'git',
+      url: 'https://github.com/fedikit/fedikit.git',
+      directory: `src/${name}`,
+    },
+    homepage: 'https://github.com/fedikit/fedikit#readme',
+    bugs: 'https://github.com/fedikit/fedikit/issues',
+    devDependencies: {
+      '@types/node': '^20.0.0',
+    },
+  },
+  // if version !== 'test', skip install
+  packageManager: version === 'test' ? 'pnpm' : 'echo',
+  postBuild: () => {
+    // copy README.md
+    Deno.copyFileSync(
+      `./src/${name}/README.md`,
+      `./npm/${name}/README.md`,
+    )
+  },
+})
 
 await Deno.remove('./npm', { recursive: true })
 await emptyDir('./npm')
@@ -24,35 +74,6 @@ await Deno.writeFile(
 
 await emptyDir('./npm/http-signature')
 
-await build({
-  importMap: 'import_map.json',
-  entryPoints: ['./src/http-signature/mod.ts'],
-  outDir: './npm/http-signature',
-  shims: { deno: true },
-  declaration: 'separate',
-  esModule: true,
-  scriptModule: false,
-  skipSourceOutput: true,
-  compilerOptions: {
-    lib: ['ESNext', 'DOM', 'DOM.Iterable'],
-  },
-  // if enable, test only
-  test: false,
-  package: {
-    name: '@fedikit/http-signature',
-    version: Deno.args[0],
-    engines: { node: '>=20.0.0' },
-    devDependencies: {
-      '@types/node': '^20.0.0',
-    },
-  },
-  // skip install
-  // packageManager: 'pnpm',
-  packageManager: 'echo',
-  postBuild: () => {
-    Deno.copyFileSync(
-      './src/http-signature/README.md',
-      './npm/http-signature/README.md',
-    )
-  },
-})
+await build(
+  generateBuildOptions({ name: 'http-signature', version: Deno.args[0] }),
+)
