@@ -23,10 +23,7 @@ currently supported up to
 ###### Sign
 
 ```ts
-// Node.js
 import { generateKey, sign } from '@fedikit/http-signature'
-// Deno
-import { generateKey, sign } from 'fedikit/src/http-signature/mod.ts'
 
 const keyPair = await generateKey()
 

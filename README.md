@@ -19,6 +19,14 @@ Building Blocks for Fediverse.
 
 <!-- ### Hono [TODO] -->
 
+## Roadmap
+
+FediKit currently only has a few peripheral libraries, mostly because of my
+limited energy.
+
+I might consider writing some ActivityPub libraries (e.g. Actor, Activity
+Queues) once this project have other contributors on board.
+
 ## License
 
 Licensed under [MIT](LICENSE.md).
