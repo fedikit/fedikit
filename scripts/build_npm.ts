@@ -1,3 +1,5 @@
+#!/usr/bin/env -S deno run -A
+
 import {
   build,
   type BuildOptions,
