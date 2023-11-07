@@ -24,8 +24,7 @@ const app = new Hono()
 //     }
 //   ]
 // }
-app.get(
-  '.well-known/nodeinfo',
-  (c) => simpleWellKnownNodeInfo(new URL('https://example.com')),
+app.get('.well-known/nodeinfo', (c) =>
+  simpleWellKnownNodeInfo(new URL(c.req.url).origin)
 )
 ```
