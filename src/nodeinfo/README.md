@@ -1,6 +1,6 @@
 # @fedikit/nodeinfo
 
-Support NodeInfo in a simple way. [WIP]
+Implement NodeInfo in a simple way. [WIP]
 
 ## Usage
 
