@@ -8,11 +8,11 @@ export type SimpleWebfingerHandler = (params: {
   user: string
   /** @example `example.com` */
   host: string
-}) => URL | Promise<URL> | undefined
+}) => string | Promise<string> | undefined
 
 export const simpleWebfinger = async (
   req: Request,
-  handler: URL | SimpleWebfingerHandler,
+  handler: string | SimpleWebfingerHandler,
 ): Promise<Response> => {
   const { searchParams } = new URL(req.url)
 
@@ -24,13 +24,11 @@ export const simpleWebfinger = async (
 
   if (!user || !host) return new Response('invalid acct', { status: 400 })
 
-  const url = handler instanceof URL
+  const href = typeof handler === 'string'
     ? handler
     : await handler({ subject, user, host })
 
-  if (!url) return new Response('not found', { status: 404 })
-
-  const { href } = url
+  if (!href) return new Response('not found', { status: 404 })
 
   const webfinger = {
     subject,
