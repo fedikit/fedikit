@@ -1,7 +1,7 @@
 import { extractSubject } from './lib/subject.ts'
 import type { Webfinger } from './lib/types.ts'
 
-export type SimpleWebfingerHandlerFn = (params: {
+export type SimpleWebfingerHandler = (params: {
   /** @example `acct:carol@example.com` */
   subject: string
   /** @example `carol` */
@@ -12,7 +12,7 @@ export type SimpleWebfingerHandlerFn = (params: {
 
 export const simpleWebfinger = async (
   req: Request,
-  handler: URL | SimpleWebfingerHandlerFn,
+  handler: URL | SimpleWebfingerHandler,
 ): Promise<Response> => {
   const { searchParams } = new URL(req.url)
 
