@@ -27,7 +27,7 @@ const app = new Hono()
 // }
 app.get(
   '.well-known/nodeinfo',
-  (c) => simpleWellKnownNodeInfo(new URL(c.req.url).origin),
+  ({ req }) => simpleWellKnownNodeInfo(new URL(req.raw.url).origin),
 )
 ```
 
@@ -89,7 +89,7 @@ const app = new Hono()
 //   "metadata": {}
 // }
 app.get('/nodeinfo/*', ({ req }) =>
-  simpleNodeInfo(req, {
+  simpleNodeInfo(req.raw, {
     software: {
       name: pkg.name,
       version: pkg.version,

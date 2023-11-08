@@ -36,6 +36,6 @@ const handler = ({ user, host }) => `https://${host}/users/${user}`
 // }
 app.get(
   '.well-known/webfinger',
-  (c) => simpleWebfinger(handler),
+  () => simpleWebfinger(handler),
 )
 ```
