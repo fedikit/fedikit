@@ -82,14 +82,14 @@ await Deno.writeFile(
     // https://pnpm.io/npmrc#prefer-frozen-lockfile
     'prefer-frozen-lockfile=false',
     // https://docs.npmjs.com/generating-provenance-statements#using-third-party-package-publishing-tools
-    'provenance=true'
-  ].join('\n'))
+    'provenance=true',
+  ].join('\n')),
 )
 await Deno.writeFile(
   './npm/pnpm-workspace.yaml',
   encoder.encode([
     'packages:',
-    '  - packages/*'
+    '  - packages/*',
   ].join('\n')),
 )
 await Deno.writeFile(
