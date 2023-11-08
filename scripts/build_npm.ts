@@ -88,7 +88,7 @@ for await (const entry of Deno.readDir('./src')) {
   if (entry.isDirectory) {
     await emptyDir(`./npm/${entry.name}`)
     await build(
-      generateBuildOptions({ name: entry.name, version: Deno.args[0] })
+      generateBuildOptions({ name: entry.name, version: Deno.args[0] }),
     )
   }
 }
