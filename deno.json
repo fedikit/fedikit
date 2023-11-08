@@ -9,6 +9,7 @@
   "tasks": {
     "node": "deno run -A scripts/build_npm.ts",
     "test": "deno test -A --parallel",
+    "docs": "deno doc --html --name=\"FediKit\" ./mod.ts",
     "ok": "deno fmt --check && deno lint && deno check src/**/*.ts && deno task test && deno task node test"
   }
 }
