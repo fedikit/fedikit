@@ -85,7 +85,10 @@ export type NodeInfo<T extends NodeInfoVersions = '2.1'> = {
   version: T
   /** Metadata about server software in use. */
   software: {
-    /** The canonical name of this server software. */
+    /**
+     * The canonical name of this server software.
+     * @remarks `/^[a-z0-9-]+$/.test(name)`
+     */
     name: string
     /** The version of this server software. */
     version: string
