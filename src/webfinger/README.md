@@ -7,7 +7,10 @@ Implement Webfinger in a simple way. [WIP]
 ###### /.well-known/webfinger (simpleWebfinger)
 
 ```ts
-import { simpleWebfinger, type SimpleWebfingerHandler } from '@fedikit/webfinger'
+import {
+  simpleWebfinger,
+  type SimpleWebfingerHandler,
+} from '@fedikit/webfinger'
 import { Hono } from 'hono'
 
 const app = new Hono()
@@ -36,4 +39,3 @@ app.get(
   (c) => simpleWebfinger(handler),
 )
 ```
-
