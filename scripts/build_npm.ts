@@ -12,7 +12,7 @@ const generateBuildOptions = (
   importMap: 'import_map.json',
   entryPoints: [`./src/${name}/mod.ts`],
   outDir: `./npm/packages/${name}`,
-  shims: { deno: true },
+  shims: { deno: { test: 'dev' } },
   declaration: 'separate',
   esModule: true,
   scriptModule: false,
