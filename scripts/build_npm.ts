@@ -11,7 +11,7 @@ const generateBuildOptions = (
 ): BuildOptions => ({
   importMap: 'import_map.json',
   entryPoints: [`./src/${name}/mod.ts`],
-  outDir: `./npm/${name}`,
+  outDir: `./npm/packages/${name}`,
   shims: { deno: true },
   declaration: 'separate',
   esModule: true,
@@ -48,12 +48,12 @@ const generateBuildOptions = (
     // copy README.md
     await Deno.copyFile(
       `./src/${name}/README.md`,
-      `./npm/${name}/README.md`,
+      `./npm/packages/${name}/README.md`,
     )
     // copy LICENSE.md
     await Deno.copyFile(
       './LICENSE.md',
-      `./npm/${name}/LICENSE.md`,
+      `./npm/packages/${name}/LICENSE.md`,
     )
     // TODO: tree shaking
     // https://github.com/denoland/dnt/issues/180
@@ -72,13 +72,13 @@ try {
   }
 }
 
-await emptyDir('./npm')
+await emptyDir('./npm/packages')
 
 const encoder = new TextEncoder()
 
 await Deno.writeFile(
   './npm/pnpm-workspace.yaml',
-  encoder.encode(`packages:\n  - ./*`),
+  encoder.encode(`packages:\n  - packages/*`),
 )
 await Deno.writeFile(
   './npm/package.json',
@@ -106,7 +106,7 @@ await Deno.writeFile(
 
 for await (const entry of Deno.readDir('./src')) {
   if (entry.isDirectory) {
-    await emptyDir(`./npm/${entry.name}`)
+    await emptyDir(`./npm/packages/${entry.name}`)
     await build(
       generateBuildOptions({ name: entry.name, version: Deno.args[0] }),
     )
