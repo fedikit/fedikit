@@ -43,11 +43,16 @@ const generateBuildOptions = (
   },
   // if version !== 'test', skip install
   packageManager: version === 'test' ? 'pnpm' : 'echo',
-  postBuild: () => {
+  postBuild: async () => {
     // copy README.md
-    Deno.copyFileSync(
+    await Deno.copyFile(
       `./src/${name}/README.md`,
       `./npm/${name}/README.md`,
+    )
+    // copy LICENSE.md
+    await Deno.copyFile(
+      './LICENSE.md',
+      `./npm/${name}/LICENSE.md`,
     )
     // TODO: tree shaking
     // https://github.com/denoland/dnt/issues/180
