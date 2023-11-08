@@ -1,10 +1,6 @@
 import { assertEquals } from 'std/assert/mod.ts'
 
-import {
-  generateKey,
-  sign,
-  signatureHeaderToObject,
-} from './mod.ts'
+import { generateKey, sign, signatureHeaderToObject } from './mod.ts'
 import { decodeBase64, subtle } from './deps.ts'
 
 Deno.test('sign', async () => {
