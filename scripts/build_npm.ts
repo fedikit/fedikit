@@ -23,6 +23,13 @@ const generateBuildOptions = (
   // if version === 'test', test only
   test: version === 'test',
   testPattern: `./src/${name}/**/*.test.ts`,
+  // `@fedikit/http-signature` not required `hono`
+  mappings: name === 'http-signature' ? {} : {
+    'https://deno.land/x/hono@v3.10.0-rc.2/mod.ts': {
+      name: 'hono',
+      version: 'next',
+    },
+  },
   package: {
     name: `@fedikit/${name}`,
     version: version === 'test' ? '0.0.0-test.0' : version,
