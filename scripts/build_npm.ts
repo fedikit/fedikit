@@ -77,8 +77,20 @@ await emptyDir('./npm/packages')
 const encoder = new TextEncoder()
 
 await Deno.writeFile(
+  './npm/.npmrc',
+  encoder.encode([
+    // https://pnpm.io/npmrc#prefer-frozen-lockfile
+    'prefer-frozen-lockfile=false',
+    // https://docs.npmjs.com/generating-provenance-statements#using-third-party-package-publishing-tools
+    'provenance=true'
+  ].join('\n'))
+)
+await Deno.writeFile(
   './npm/pnpm-workspace.yaml',
-  encoder.encode(`packages:\n  - packages/*`),
+  encoder.encode([
+    'packages:',
+    '  - packages/*'
+  ].join('\n')),
 )
 await Deno.writeFile(
   './npm/package.json',
