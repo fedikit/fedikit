@@ -7,7 +7,7 @@ import {
   generateKey,
   importPrivateKey,
   importPublicKey,
-} from '../../../src/http-signature/lib/key.ts'
+} from './key.ts'
 
 // fail in Node.js
 Deno.test({

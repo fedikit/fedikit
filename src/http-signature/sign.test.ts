@@ -4,8 +4,8 @@ import {
   generateKey,
   sign,
   signatureHeaderToObject,
-} from '../../src/http-signature/mod.ts'
-import { decodeBase64, subtle } from '../../src/http-signature/deps.ts'
+} from './mod.ts'
+import { decodeBase64, subtle } from './deps.ts'
 
 Deno.test('sign', async () => {
   const keyPair = await generateKey()
