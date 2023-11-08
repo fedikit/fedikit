@@ -22,6 +22,7 @@ const generateBuildOptions = (
   },
   // if version === 'test', test only
   test: version === 'test',
+  testPattern: `./src/${name}/**/*.test.ts`,
   package: {
     name: `@fedikit/${name}`,
     version: version === 'test' ? '0.0.0-test.0' : version,
