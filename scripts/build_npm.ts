@@ -49,6 +49,9 @@ const generateBuildOptions = (
       `./src/${name}/README.md`,
       `./npm/${name}/README.md`,
     )
+    // TODO: tree shaking
+    // https://github.com/denoland/dnt/issues/180
+    // https://github.com/denoland/dnt/issues/258
   },
 })
 
@@ -81,8 +84,11 @@ await Deno.writeFile(
   )),
 )
 
-await emptyDir('./npm/http-signature')
-
-await build(
-  generateBuildOptions({ name: 'http-signature', version: Deno.args[0] }),
-)
+for await (const entry of Deno.readDir('./src')) {
+  if (entry.isDirectory) {
+    await emptyDir(`./npm/${entry.name}`)
+    await build(
+      generateBuildOptions({ name: entry.name, version: Deno.args[0] })
+    )
+  }
+}
