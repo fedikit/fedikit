@@ -31,7 +31,9 @@ const expectedWebfinger = {
 }
 
 Deno.test('GET /.well-known/webfinger?resource=acct:carol@example.com', async () => {
-  const res = await app.request('/.well-known/webfinger?resource=acct:carol@example.com')
+  const res = await app.request(
+    '/.well-known/webfinger?resource=acct:carol@example.com',
+  )
 
   assertEquals(res.status, 200)
   assertEquals(await res.json(), expectedWebfinger)
