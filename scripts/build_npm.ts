@@ -57,6 +57,9 @@ const generateBuildOptions = (
     // TODO: tree shaking
     // https://github.com/denoland/dnt/issues/180
     // https://github.com/denoland/dnt/issues/258
+    // Note: pnpm dlx knip@autofix --fix
+    // (currently doesn't work)
+    // https://github.com/webpro/knip/issues/63
   },
 })
 
@@ -88,6 +91,17 @@ await Deno.writeFile(
     2,
   )),
 )
+// await Deno.writeFile(
+//   './npm/knip.json',
+//   encoder.encode(JSON.stringify({
+//     workspaces: {
+//       './*': {
+//         entry: 'esm/mod.js',
+//         project: '**/*.{js,d.ts}'
+//       }
+//     }
+//   }))
+// )
 
 for await (const entry of Deno.readDir('./src')) {
   if (entry.isDirectory) {
