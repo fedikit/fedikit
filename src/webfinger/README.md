@@ -20,7 +20,7 @@ const handler = ({ user, host }) => `https://${host}/users/${user}`
 // GET https://example.com/.well-known/webfinger?resource=acct:carol@example.com
 // {
 //   "subject": "acct:carol@example.com",
-//   "aliases: ["https://example.com/users/carol"]
+//   "aliases": ["https://example.com/users/carol"],
 //   "links": [
 //     {
 //       "href": "https://example.com/users/carol",
