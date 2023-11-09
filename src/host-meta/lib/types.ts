@@ -1,6 +1,6 @@
 /** {@link https://json.schemastore.org/host-meta.json} */
 export type HostMeta = {
-  subject: string
+  subject?: string
   expires?: string
   aliases?: string[]
   properties?: HostMetaProperties

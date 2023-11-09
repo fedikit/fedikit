@@ -1,4 +1,4 @@
-import { HostMeta, HostMetaLink, HostMetaProperties } from './types.ts'
+import type { HostMeta, HostMetaLink, HostMetaProperties } from './types.ts'
 
 export const stringifyTitles = (titles: HostMetaLink['titles']): string[] =>
   Object.entries(titles ?? {})
@@ -49,8 +49,11 @@ export const stringify = (hostMeta: HostMeta): string => {
   const result = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">',
-    `  <Subject>${hostMeta.subject}</Subject>`,
   ]
+
+  if (hostMeta.subject) {
+    result.push(`  <Subject>${hostMeta.subject}</Subject>`)
+  }
 
   if (hostMeta.expires) {
     result.push(`  <Expires>${hostMeta.expires}</Expires>`)
