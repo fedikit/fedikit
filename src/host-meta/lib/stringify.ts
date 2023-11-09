@@ -9,18 +9,27 @@ export const stringifyTitles = (titles: HostMetaLink['titles']): string[] =>
         : `    <Title xml:lang="${key}">${value}</Title>`
     )
 
-export const stringifyProperties = (properties: HostMetaProperties, spaces = 2): string[] =>
+export const stringifyProperties = (
+  properties: HostMetaProperties,
+  spaces = 2,
+): string[] =>
   Object.entries(properties)
     .map(([type, value]) =>
       value === null
-        ? `${Array.from({ length: spaces }).fill(' ').join('')}<Property type="${type}" xsi:nil="true" />`
-        : `${Array.from({ length: spaces }).fill(' ').join('')}<Property type="${type}">${value}</Property>`
+        ? `${
+          Array.from({ length: spaces }).fill(' ').join('')
+        }<Property type="${type}" xsi:nil="true" />`
+        : `${
+          Array.from({ length: spaces }).fill(' ').join('')
+        }<Property type="${type}">${value}</Property>`
     )
 
 export const stringifyLinks = (links: HostMetaLink[]): string[] =>
-  links.flatMap(link => {
+  links.flatMap((link) => {
     const props = Object.entries(link)
-      .filter(([key, value]) => !(['titles', 'properties'].includes(key) || value === undefined))
+      .filter(([key, value]) =>
+        !(['titles', 'properties'].includes(key) || value === undefined)
+      )
       .map(([key, value]) => `${key}="${value}"`)
       .join(' ')
 
@@ -31,7 +40,7 @@ export const stringifyLinks = (links: HostMetaLink[]): string[] =>
         `  <Link ${props}>`,
         ...(link.titles ? stringifyTitles(link.titles) : []),
         ...(link.properties ? stringifyProperties(link.properties, 4) : []),
-        '  </Link>'
+        '  </Link>',
       ]
     }
   })
@@ -40,20 +49,22 @@ export const stringify = (hostMeta: HostMeta): string => {
   const result = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">',
-    `  <Subject>${hostMeta.subject}</Subject>`
+    `  <Subject>${hostMeta.subject}</Subject>`,
   ]
 
-  if (hostMeta.expires)
+  if (hostMeta.expires) {
     result.push(`  <Expires>${hostMeta.expires}</Expires>`)
+  }
 
-  hostMeta.aliases?.forEach(alias => result.push(`  <Alias>${alias}</Alias>`))
+  hostMeta.aliases?.forEach((alias) => result.push(`  <Alias>${alias}</Alias>`))
 
-  if (hostMeta.properties)
+  if (hostMeta.properties) {
     result.push(...stringifyProperties(hostMeta.properties))
+  }
 
-
-  if (hostMeta.links)
+  if (hostMeta.links) {
     result.push(...stringifyLinks(hostMeta.links))
+  }
 
   result.push('</XRD>')
 

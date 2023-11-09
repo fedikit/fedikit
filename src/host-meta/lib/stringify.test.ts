@@ -60,7 +60,7 @@ Deno.test('stringify', () => {
     '    <Title>The other author</Title>',
     '  </Link>',
     '  <Link rel="copyright" template="http://example.com/copyright?id={uri}" />',
-    '</XRD>'
+    '</XRD>',
   ].join('\n')
 
   assertEquals(stringify(hostMeta), expectedXRD)
