@@ -3,6 +3,7 @@ import { HostMeta } from './types.ts'
 import { stringify } from './stringify.ts'
 
 Deno.test('stringify', () => {
+  /** {@link https://datatracker.ietf.org/doc/html/rfc6415#appendix-A} */
   const hostMeta = {
     subject: 'http://blog.example.com/article/id/314',
     expires: '2010-01-30T09:30:00Z',
