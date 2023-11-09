@@ -1,10 +1,10 @@
 # @fedikit/webfinger
 
-Implement Webfinger in a simple way. [WIP]
+Implement Webfinger in a simple way.
 
 ## Usage
 
-###### /.well-known/webfinger (simpleWebfinger)
+###### `/.well-known/webfinger` (simpleWebfinger)
 
 ```ts
 import {

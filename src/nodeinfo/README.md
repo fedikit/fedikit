@@ -1,10 +1,10 @@
 # @fedikit/nodeinfo
 
-Implement NodeInfo in a simple way. [WIP]
+Implement NodeInfo in a simple way.
 
 ## Usage
 
-###### /.well-known/nodeinfo (simpleWellKnownNodeInfo)
+###### `/.well-known/nodeinfo` (simpleWellKnownNodeInfo)
 
 ```ts
 import { simpleWellKnownNodeInfo } from '@fedikit/nodeinfo'
@@ -31,7 +31,7 @@ app.get(
 )
 ```
 
-###### /nodeinfo/* (simpleNodeInfo)
+###### `/nodeinfo/*` (simpleNodeInfo)
 
 ```ts
 import { simpleNodeInfo } from '@fedikit/nodeinfo'

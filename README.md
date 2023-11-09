@@ -9,13 +9,13 @@ Building Blocks for Fediverse.
 
 ## Blocks
 
+### [HostMeta](/src/host-meta/) [WIP]
+
 ### [HTTP Signature](/src/http-signature/) [WIP]
 
-### [Webfinger](/src/webfinger/) [WIP]
+### [NodeInfo](/src/nodeinfo/)
 
-### [NodeInfo](/src/nodeinfo/) [WIP]
-
-<!-- ### HostMeta [TODO] -->
+### [Webfinger](/src/webfinger/)
 
 <!-- ### Hono [TODO] -->
 
