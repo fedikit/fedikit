@@ -9,7 +9,7 @@ Building Blocks for Fediverse.
 
 ## Blocks
 
-### [HostMeta](/src/host-meta/) [WIP]
+### [HostMeta](/src/host-meta/)
 
 ### [HTTP Signature](/src/http-signature/) [WIP]
 

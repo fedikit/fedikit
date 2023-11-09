@@ -1,11 +1,11 @@
 # @fedikit/host-meta
 
 Implement [Web Host Metadata](https://datatracker.ietf.org/doc/html/rfc6415) in
-a simple way. [WIP]
+a simple way.
 
 ## Usage
 
-###### `/.well-known/host-meta*` (simpleHostMeta)
+###### `/.well-known/host-meta` `/.well-known/host-meta.*` (simpleHostMeta)
 
 ```ts
 import { simpleHostMeta } from '@fedikit/webfinger'
