@@ -81,27 +81,25 @@ try {
 
 await emptyDir('./npm/packages')
 
-const encoder = new TextEncoder()
-
-await Deno.writeFile(
+await Deno.writeTextFile(
   './npm/.npmrc',
-  encoder.encode([
+  [
     // https://pnpm.io/npmrc#prefer-frozen-lockfile
     'prefer-frozen-lockfile=false',
     // https://docs.npmjs.com/generating-provenance-statements#using-third-party-package-publishing-tools
     'provenance=true',
-  ].join('\n')),
+  ].join('\n'),
 )
-await Deno.writeFile(
+await Deno.writeTextFile(
   './npm/pnpm-workspace.yaml',
-  encoder.encode([
+  [
     'packages:',
     '  - packages/*',
-  ].join('\n')),
+  ].join('\n'),
 )
-await Deno.writeFile(
+await Deno.writeTextFile(
   './npm/package.json',
-  encoder.encode(JSON.stringify(
+  JSON.stringify(
     {
       name: '@fedikit/workspace',
       private: true,
@@ -109,18 +107,18 @@ await Deno.writeFile(
     },
     null,
     2,
-  )),
+  ),
 )
-// await Deno.writeFile(
+// await Deno.writeTextFile(
 //   './npm/knip.json',
-//   encoder.encode(JSON.stringify({
+//   JSON.stringify({
 //     workspaces: {
 //       './*': {
 //         entry: 'esm/mod.js',
 //         project: '**/*.{js,d.ts}'
 //       }
 //     }
-//   }))
+//   })
 // )
 
 for await (const entry of Deno.readDir('./src')) {
