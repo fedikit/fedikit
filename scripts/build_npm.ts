@@ -129,12 +129,21 @@ for await (const entry of Deno.readDir('./src')) {
     )
     // if version !== 'test', add "type": "module"
     if (Deno.args[0] !== 'test') {
-      const text = await Deno.readTextFile(`./npm/packages/${entry.name}/package.json`)
+      const text = await Deno.readTextFile(
+        `./npm/packages/${entry.name}/package.json`,
+      )
       const json = JSON.parse(text)
-      await Deno.writeTextFile(`./npm/packages/${entry.name}/package.json`, JSON.stringify({
-        type: 'module',
-        ...json,
-      }, null, 2))
+      await Deno.writeTextFile(
+        `./npm/packages/${entry.name}/package.json`,
+        JSON.stringify(
+          {
+            type: 'module',
+            ...json,
+          },
+          null,
+          2,
+        ),
+      )
     }
   }
 }
