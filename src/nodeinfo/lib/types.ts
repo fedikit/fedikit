@@ -1,22 +1,7 @@
-export type WellKnownNodeInfo = {
-  links: WellKnownNodeInfoLink[]
-}
-
-export type WellKnownNodeInfoLink = {
-  rel: WellKnownNodeInfoLinkRel
-  href: string
-}
-
-export type WellKnownNodeInfoLinkRel =
-  | 'http://nodeinfo.diaspora.software/ns/schema/2.1'
-  | 'http://nodeinfo.diaspora.software/ns/schema/2.0'
-  // This library doesn't support nodeinfo 1.x
-  // | 'http://nodeinfo.diaspora.software/ns/schema/1.1'
-  // | 'http://nodeinfo.diaspora.software/ns/schema/1.0'
-  // deno-lint-ignore ban-types
-  | (string & {})
-
-/** The schema version. */
+/**
+ * The schema version.
+ * @remarks This library doesn't support nodeinfo 1.x
+ */
 export type NodeInfoVersions = '2.1' | '2.0'
 
 /** The protocols supported on this server. */
@@ -127,3 +112,17 @@ export type NodeInfo<T extends NodeInfoVersions = '2.1'> = {
   /** Free form key value pairs for software specific values. Clients should not rely on any specific key present. */
   metadata: Record<string, unknown>
 }
+
+export type WellKnownNodeInfo = {
+  links: WellKnownNodeInfoLink[]
+}
+
+export type WellKnownNodeInfoLink = {
+  rel: WellKnownNodeInfoLinkRel
+  href: string
+}
+
+export type WellKnownNodeInfoLinkRel =
+  | `http://nodeinfo.diaspora.software/ns/schema/${NodeInfoVersions}`
+  // deno-lint-ignore ban-types
+  | (string & {})
