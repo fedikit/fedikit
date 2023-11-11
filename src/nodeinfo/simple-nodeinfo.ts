@@ -1,4 +1,5 @@
-import { NodeInfo } from './lib/types.ts'
+import type { NodeInfo } from './lib/types.ts'
+import { convert } from './lib/convert.ts'
 
 export type SimpleNodeInfoOptions =
   & Pick<NodeInfo, 'software'>
@@ -27,14 +28,7 @@ export const simpleNodeInfo = (
   } satisfies NodeInfo<'2.1'>
 
   if (pathname.includes('/nodeinfo/2.0')) {
-    nodeinfo = {
-      ...nodeinfo,
-      version: '2.0',
-      software: {
-        name: nodeinfo.software.name,
-        version: nodeinfo.software.version,
-      },
-    } satisfies NodeInfo<'2.0'>
+    nodeinfo = convert(nodeinfo as NodeInfo<'2.1'>)
   }
 
   return new Response(
