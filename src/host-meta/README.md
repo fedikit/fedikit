@@ -29,7 +29,7 @@ const app = new Hono()
 // GET https://example.com/.well-known/host-meta.xrd
 // <?xml version="1.0" encoding="UTF-8"?>
 // <XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
-//   <Link rel="lrdd" type="application/jrd+json" template="http://localhost/.well-known/webfinger?resource={uri}" />
+//   <Link rel="lrdd" type="application/jrd+json" template="https://example.com/.well-known/webfinger?resource={uri}" />
 // </XRD>
 app
   .get('/.well-known/host-meta', ({ req }) => simpleHostMeta(req.raw))
