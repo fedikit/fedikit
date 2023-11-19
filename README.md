@@ -11,12 +11,12 @@ Building Blocks for Fediverse.
 ### Deno
 
 Add FediKit to your `deno.json` or `import_map.json` (replace `{{version}}` with
-the current version):
+the [current version](https://github.com/fedikit/fedikit/tags)):
 
 ```json
 {
   "imports": {
-    "fedikit/": "https://deno.land/x/fedikit@v{{version}}/"
+    "fedikit/": "https://deno.land/x/fedikit@{{version}}/"
   }
 }
 ```
