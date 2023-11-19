@@ -1,4 +1,4 @@
-import { extractSubject } from './lib/subject.ts'
+import { parseSubject } from './lib/subject.ts'
 import type { Webfinger } from './lib/types.ts'
 
 export type SimpleWebfingerHandler = (params: {
@@ -20,7 +20,7 @@ export const simpleWebfinger = async (
 
   if (!subject) return new Response('missing field `resource`', { status: 400 })
 
-  const { user, host } = extractSubject(subject)
+  const { user, host } = parseSubject(subject)
 
   if (!user || !host) return new Response('invalid acct', { status: 400 })
 
