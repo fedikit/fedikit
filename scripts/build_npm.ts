@@ -25,9 +25,9 @@ const generateBuildOptions = (
   testPattern: `./src/${name}/**/*.test.ts`,
   // `@fedikit/http-signature` not required `hono`
   mappings: (name === 'http-signature' || version !== 'test') ? {} : {
-    'https://deno.land/x/hono@v3.10.0-rc.2/mod.ts': {
+    'https://deno.land/x/hono@v3.10.0/mod.ts': {
       name: 'hono',
-      version: 'next',
+      version: '3.10.0',
     },
   },
   package: {
@@ -122,7 +122,7 @@ await Deno.writeTextFile(
 // )
 
 for await (const entry of Deno.readDir('./src')) {
-  if (entry.isDirectory) {
+  if (entry.isDirectory && entry.name !== 'deps') {
     await emptyDir(`./npm/packages/${entry.name}`)
     await build(
       generateBuildOptions({ name: entry.name, version: Deno.args[0] }),

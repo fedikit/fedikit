@@ -1,5 +1,5 @@
-import { assertEquals } from 'std/assert/mod.ts'
-import { Hono } from 'hono/mod.ts'
+import { assertEquals } from '../deps/std/assert.ts'
+import { Hono } from '../deps/hono.ts'
 import { type NodeInfo, simpleNodeInfo } from './mod.ts'
 
 const app = new Hono()

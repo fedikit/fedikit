@@ -1,4 +1,4 @@
-import { assertEquals } from 'std/assert/mod.ts'
+import { assertEquals } from '../deps/std/assert.ts'
 
 import { generateKey, sign, signatureHeaderToObject } from './mod.ts'
 import { decodeBase64, subtle } from './deps.ts'

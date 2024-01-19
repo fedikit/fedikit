@@ -1,4 +1,3 @@
-export const { subtle } = globalThis.crypto
 export {
   decodeBase64,
   encodeBase64,
