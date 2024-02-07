@@ -6,6 +6,14 @@
 
 Building Blocks for Fediverse.
 
+## Features
+
+- Available on multiple runtimes.
+  - FediKit is a Deno modules, published to npm with the help of [`dnt`](https://github.com/denoland/dnt).
+- Focus on [Web Standard](https://hono.dev/concepts/web-standard).
+  - FediKit uses Web Standard APIs for functionality such as `fetch`, `Request` and `Response` wherever possible.
+  - For HTTP Signature, it uses the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API).
+
 ## Setup
 
 ### Deno
